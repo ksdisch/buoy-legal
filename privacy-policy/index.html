@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Buoy</title>
+<meta name="description" content="Buoy's privacy policy: no stored locations, no tracking, minimal data, in-app deletion and export.">
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    color: #1c2733;
+    background: #ffffff;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 44rem; margin: 0 auto; padding: 2.25rem 1.25rem 3rem; }
+  .brand { font-weight: 700; letter-spacing: 0.02em; text-decoration: none; color: #0b6aa2; font-size: 0.95rem; }
+  h1 { font-size: 1.85rem; line-height: 1.25; margin: 0.4rem 0 1rem; }
+  h2 { font-size: 1.2rem; margin: 2rem 0 0.6rem; padding-top: 1.25rem; border-top: 1px solid #dde3e8; }
+  h3 { font-size: 1.02rem; margin: 1.4rem 0 0.4rem; }
+  p, ul, ol { margin: 0.65rem 0; }
+  li { margin: 0.35rem 0; }
+  .meta { margin: 0.15rem 0; color: #4c5a66; }
+  .meta strong { color: #1c2733; }
+  a { color: #0b6aa2; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; background: #f0f3f5; padding: 0.1em 0.3em; border-radius: 4px; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+  th, td { border: 1px solid #d7dee4; padding: 0.5rem 0.6rem; text-align: left; vertical-align: top; }
+  th { background: #f2f5f7; }
+  footer { max-width: 44rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; border-top: 1px solid #dde3e8; color: #4c5a66; font-size: 0.9rem; }
+  footer nav a { margin-right: 1rem; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #10151a; color: #dfe5ea; }
+    .meta, footer { color: #97a4af; }
+    .meta strong { color: #dfe5ea; }
+    a, .brand { color: #5ab2e8; }
+    h2, footer { border-top-color: #2a343d; }
+    code { background: #1c242c; }
+    th { background: #1a2129; }
+    th, td { border-color: #2a343d; }
+  }
+</style>
+</head>
+<body>
+<main>
+<p><a class="brand" href="../">Buoy</a></p>
+<h1>Privacy Policy</h1>
+
+<p class="meta"><strong>Effective date:</strong> 2026-07-11</p>
+<p class="meta"><strong>Who we are:</strong> Kyle Disch (“we”, “us”, “Buoy”)</p>
+<p class="meta"><strong>Contact:</strong> <a href="mailto:buoy.dogparks@gmail.com">buoy.dogparks@gmail.com</a></p>
+
+<h2>The short version</h2>
+
+<p>Buoy helps you see who's at your dog park right now and meet up. We built it
+privacy-first, and that's not marketing:</p>
+
+<ul>
+  <li><strong>We never store your location.</strong> Your GPS coordinates are used for a single
+    yes/no check ("are you inside this park?" / "which parks are near you?") and
+    then thrown away. There is no column in our database that could hold a
+    coordinate, so not even we can reconstruct where you've been from a check-in.</li>
+  <li><strong>We don't track you.</strong> No analytics, advertising, or third-party tracking
+    SDKs. We don't touch the device advertising identifier and show no tracking
+    prompt — there's nothing to track.</li>
+  <li><strong>We collect very little.</strong> A dog name, a chosen silhouette avatar (no photos),
+    and the parks you check into. No human name, no photo, no phone number, no
+    address book.</li>
+  <li><strong>You're in control.</strong> Turn on ghost mode to go invisible, block anyone,
+    delete your whole account from inside the app at any time, and export your data.</li>
+</ul>
+
+<p>The rest of this policy is the detail behind those claims.</p>
+
+<h2>1. What we collect</h2>
+
+<h3>Account &amp; sign-in</h3>
+<p>You sign in with <strong>Sign in with Apple</strong> or <strong>Google</strong>. From that sign-in we
+receive and store an <strong>email address</strong> through our authentication provider
+(Supabase). With Sign in with Apple, this may be Apple's <strong>private relay</strong>
+address that hides your real email. We use the email only to create and secure
+your account; it is <strong>not shown anywhere in the app</strong> and we don't use it for
+marketing. We also store the account identifier (a UUID) that links your data
+together.</p>
+
+<h3>Your dog profile</h3>
+<ul>
+  <li><strong>Dog name</strong> — free text you enter (1–24 characters). It's shown to other
+    users at the same park. Please don't put a person's name here.</li>
+  <li><strong>Avatar</strong> — one of a fixed set of in-app silhouettes. <strong>No photos</strong> are
+    collected or uploaded.</li>
+</ul>
+
+<h3>Check-ins &amp; presence</h3>
+<p>When you check in, we store that you are at a particular <strong>park</strong>, with a
+timestamp and an expiry — specifically <code>(your account ID, park ID, status,
+created time, expiry time)</code>. We <strong>do not</strong> store the latitude/longitude — there
+is no coordinate column on this record. "Status" is either <em>here</em> (you're
+physically at the park, geofence-verified) or <em>heading</em> (you're on your way).</p>
+
+<p>When a check-in succeeds we also keep a <strong>measurement record</strong> of the visit —
+<code>(your account ID, park ID, time, status, and a count of how many other
+non-blocked users were present at that moment)</code>. It likewise has <strong>no
+coordinate column</strong>, is never visible to other users or shown in the app, and
+exists only so we can compute aggregate pilot health metrics (like "what share
+of visits had another dog present"). Section 4 covers how long it is kept.</p>
+
+<h3>Precise location (used, never stored)</h3>
+<p>Buoy uses your device's <strong>precise location, foreground only</strong> (while the app
+is open). Your coordinates leave your device in only two situations:</p>
+
+<ol>
+  <li><strong>When you tap "I'm here"</strong> — to verify you're physically inside the park.</li>
+  <li><strong>When the app opens</strong> — to find parks near you.</li>
+</ol>
+
+<p>In both cases your coordinates are used <strong>only to compute a result</strong> (a geofence
+check, or a distance filter) and are then <strong>immediately discarded</strong> — never
+written to any database (there is no column anywhere that could hold a
+coordinate) and never attached to your account. Buoy's own code does not log
+your coordinates. We never request background location and never continuously
+track your position. (Tapping "On my way" to say you're heading to a park sends
+<strong>no location at all</strong>.)</p>
+
+<h3>Invites, blocks, and reports</h3>
+<ul>
+  <li><strong>Invites</strong> — when you invite someone (or are invited) at a park, we store the
+    two account IDs, the park, and the time. Only the two of you can see it.</li>
+  <li><strong>Blocks</strong> — if you block someone, we store that. The block is one-directional
+    and secret: the blocked person is <strong>not</strong> notified and can't see that you
+    blocked them.</li>
+  <li><strong>Reports</strong> — if you report someone, we store your report, including the
+    reason (a preset category or <strong>free text you write</strong>), so we can review abuse.
+    Please don't include other people's personal information in the text. Reports
+    are visible only to us; the reported person is not told.</li>
+</ul>
+
+<h3>Notifications</h3>
+<p>If you allow notifications, we store a <strong>push token</strong> for your device so we can
+deliver invite alerts. It's removed when you delete your account.</p>
+
+<h3>What we do <strong>not</strong> collect</h3>
+<p>No photos. No human name. No phone number, contacts, or address book. No
+analytics, advertising, or tracking identifiers. No background location. No
+stored coordinates. No payment information (Buoy is free in v0).</p>
+
+<h2>2. How we use your data</h2>
+
+<p>Only to run the service: authenticate you; show who's at a park; let you check
+in, invite, block, and report; deliver invite notifications; and respond to
+abuse reports and support requests. We do not sell your data, and we do not use
+it for advertising or cross-app tracking.</p>
+
+<h2>3. Who we share it with (service providers)</h2>
+
+<p>We don't sell your data. We rely on a small set of processors to operate:</p>
+
+<table>
+  <thead>
+    <tr><th>Provider</th><th>What they receive</th><th>Why</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Supabase</strong> (our backend)</td>
+      <td>Everything in section 1 that's stored (account, profile, presences, invites, blocks, reports, push tokens)</td>
+      <td>Database, authentication, and realtime hosting. Data is hosted in the United States (US East region).</td>
+    </tr>
+    <tr>
+      <td><strong>Apple</strong> (Sign in with Apple)</td>
+      <td>Your sign-in, via Apple's system</td>
+      <td>Account sign-in</td>
+    </tr>
+    <tr>
+      <td><strong>Google</strong> (Google Sign-In)</td>
+      <td>Your sign-in, via Google's system</td>
+      <td>Account sign-in</td>
+    </tr>
+    <tr>
+      <td><strong>Expo Push Service</strong>, and <strong>Apple (APNs)</strong> / <strong>Google (FCM)</strong></td>
+      <td>Your device push token, and the <strong>content of invite notifications</strong></td>
+      <td>Delivering invite alerts</td>
+    </tr>
+    <tr>
+      <td><strong>OpenStreetMap</strong> (map tiles)</td>
+      <td>Your approximate map view and your device's IP address</td>
+      <td>Drawing the map background</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Two specifics worth calling out:</p>
+
+<ul>
+  <li><strong>Invite notifications carry a dog name + park name.</strong> A push alert shows the
+    sender's dog name and the park name (for example, a title <em>"Rex wants to meet"</em>
+    and body <em>"at Sunset Woods Park."</em>). That text passes through Expo's and
+    Apple's/Google's push systems and can appear on your lock screen. The sender's
+    account ID is deliberately <strong>not</strong> included.</li>
+  <li><strong>Map tiles reveal approximate location to OpenStreetMap.</strong> As with any map,
+    loading tiles tells the tile server roughly what area you're viewing, along
+    with your IP address. We don't send your account identity to them.</li>
+</ul>
+
+<p>These providers process data under their own privacy policies.</p>
+
+<h2>4. How long we keep it</h2>
+
+<ul>
+  <li><strong>Live check-ins auto-expire.</strong> A <em>here</em> check-in lasts <strong>90 minutes</strong>; a
+    <em>heading</em> one lasts <strong>30 minutes</strong>. After that a cleanup job deletes the
+    record (it runs every 5 minutes). There is no "I'm here until I leave" —
+    the presence other users can see is always short-lived by design.</li>
+  <li><strong>The park-level measurement record is kept for up to 180 days.</strong> The
+    visit record described in section 1 (park, time, status, count of others
+    present — never coordinates) is retained for up to <strong>180 days</strong> and then
+    deleted automatically by the same cleanup job. It appears in your data
+    export and is erased immediately if you delete your account.</li>
+  <li><strong>Profile, invites, blocks, reports, push tokens</strong> persist until you delete
+    them or delete your account.</li>
+  <li><strong>Account deletion is immediate and permanent.</strong> From <strong>Settings → Delete my
+    account</strong>, we hard-delete your account and cascade-delete your profile,
+    check-ins, invites, blocks, reports, and push tokens. There is no grace period
+    and no recovery. (Note: this also erases reports you filed and reports about
+    you.) Some records outside our app database — your authentication provider's
+    security logs, your device's notification history, and your Apple/Google
+    sign-in records — are governed by those providers' policies.</li>
+</ul>
+
+<h2>5. Your choices &amp; rights</h2>
+
+<ul>
+  <li><strong>Ghost mode</strong> — go invisible instantly; while on, you create no presence and
+    don't appear at any park.</li>
+  <li><strong>Block</strong> — remove someone from your views immediately.</li>
+  <li><strong>Delete your account</strong> — in-app, anytime (see section 4).</li>
+  <li><strong>Export your data</strong> — in-app, anytime: a JSON file of your profile, your
+    check-in history (including expired ones), your invites, the blocks you
+    created, the reports you filed, and your push tokens. <em>(This export does not
+    currently include the sign-in email held by our auth provider — request that
+    from us directly at the contact above.)</em></li>
+  <li><strong>Notifications &amp; location</strong> — control both anytime in your device settings;
+    revoking location disables check-in and nearby-park discovery.</li>
+</ul>
+
+<p>Depending on where you live (e.g., EEA/UK or California), you may have
+additional rights to access, correct, or delete your data, or to object to
+processing. The in-app delete + export cover most of these; for anything else,
+contact us.</p>
+
+<h2>6. How we protect it</h2>
+
+<ul>
+  <li>Sign-in only via Apple/Google — Buoy never sees a password.</li>
+  <li>Your session is stored in your device's secure keystore (iOS Keychain /
+    Android Keystore), not in plain storage.</li>
+  <li>All traffic is encrypted in transit (HTTPS/TLS).</li>
+  <li>Database access is locked down with row-level security so users can only read
+    their own data and the limited public presence at a park.</li>
+  <li>The "are you inside the park?" check runs <strong>on our server</strong> against trusted
+    park boundaries, so it can't be spoofed by a modified app.</li>
+</ul>
+
+<h2>7. Children</h2>
+
+<p>Buoy is not directed to children under 18 and we don't knowingly collect their
+data. If you believe a child has created an account, contact us and we'll
+remove it.</p>
+
+<h2>8. Changes</h2>
+
+<p>We may update this policy. We'll change the "Effective date" and, for material
+changes, notify you in-app. Continued use after an update means you accept it.</p>
+
+<h2>9. Contact</h2>
+
+<p>Questions or requests about your privacy:
+<a href="mailto:buoy.dogparks@gmail.com">buoy.dogparks@gmail.com</a>.</p>
+
+</main>
+<footer>
+  <nav><a href="../">Legal home</a> <a href="../terms-of-service/">Terms of Service</a></nav>
+  <p>Buoy is a hyperlocal, real-time coordination utility for dog owners.<br>
+  © 2026 Kyle Disch · <a href="mailto:buoy.dogparks@gmail.com">buoy.dogparks@gmail.com</a></p>
+</footer>
+</body>
+</html>
