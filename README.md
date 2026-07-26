@@ -10,3 +10,7 @@ These are static copies. The **source of truth lives in the app repo**
 and re-render.
 
 Contact: buoy.dogparks@gmail.com
+
+---
+
+📚 **Project wiki:** [PROJECT.md](PROJECT.md) — status, scope, and next actions · [Wiki/_index.md](Wiki/_index.md) — topic pages and history
